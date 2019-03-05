@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tables Page</title>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">Compatibility Survey</h1>
+            <hr>
+            <h2 class="text-center">Answer honestly and a stranger's name will appear. Answer dishonestly and... well
+                the same thing will happen. </h2>
+            <br>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="name"> name</label>
+                <input class="form-control" id="name" placeholder="Enter name">
+            </div>
+            <div class="text-center">
+                <div class="form-group">
+                    <label for="film"> films? </label>
+                    <input class="form-control" id="film" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="dog"> dogs?</label>
+                    <input class="form-control" id="dog" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="cat"> cats? </label>
+                    <input class="form-control" id="cat" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="smanimal"> small animals?</label>
+                    <input class="form-control" id="smanimal" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="house"> how big house?</label>
+                    <input class="form-control" id="house" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="painting"> paintings?</label>
+                    <input class="form-control" id="painting" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="novel"> novels? </label>
+                    <input class="form-control" id="novel" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="food"> food? </label>
+                    <input class="form-control" id="food" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="shark"> sharks? </label>
+                    <input class="form-control" id="shark" placeholder="1-5">
+                </div>
+                <div class="form-group">
+                    <label for="school of sharks"> Schools of sharks? </label>
+                    <input class="form-control" id="sshark" placeholder="1-5">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary submit">Submit</button>
+    </div>
+    </div>
+</body>
+
+</html>
+<script>
+    $(".submit").on("click", function (event) {
+        event.preventDefault();
+
+        // Here we grab the form elements
+        var newFriend = {
+            userName: $("#name").val().trim(),
+            film: $("#film").val().trim(),
+            dog: $("#dog").val().trim(),
+            cat: $("#cat").val().trim(),
+            smanimal: $("#smanimal").val().trim(),
+            house: $("#house").val().trim(),
+            painting: $("#painting").val().trim(),
+            novel: $("#novel").val().trim(),
+            food: $("#food").val().trim(),
+            shark: $("#shark").val().trim(),
+            sshark: $("#sshark").val().trim(),
+        };
+
+        console.log(newFriend);
+
+        // This line is the magic. It"s very similar to the standard ajax function we used.
+        // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+        // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+        // depending on if a tables is available or not.
+
+        $.post("/api/surveyResults", newFriend,
+            function (data){
+            console.log(data);                
+
+                
+            });
+
+    });
+</script>
